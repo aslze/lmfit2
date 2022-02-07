@@ -13,14 +13,13 @@ endif()
 
 set(TARGET lmfit2)
 
-add_library(${TARGET} STATIC ${SRC})
-target_include_directories(${TARGET} PUBLIC .)
-
 set(SRC
 	lmfit.h
 	lmfit.c
 )
 
+add_library(${TARGET} STATIC ${SRC})
+target_include_directories(${TARGET} PUBLIC .)
 
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
 	
