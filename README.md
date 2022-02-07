@@ -2,7 +2,7 @@
 
 A modification of the original *lmfit* library to simplify its use and allow some parallelization.
 
-Just add `lmfit.c` and `lmfit.h` to your projects (don't forget the license). Curve fitting is also included.
+Just add `lmfit.c` and `lmfit.h` to your projects (don't forget the license). Or add this as a submodule or with `FetchContent` and link to `lmfit2`. Curve fitting is also included.
 
 This version allows parallelization with OpenMP. If your `evaluate()` function is very expensive,
 this may accelerate computation by calling it in parallel when computing the Jacobian. If the function is simple
