@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.12)
 
 project(lmfit2)
 
-option(LMFIT_OPENMP "Use OpenMP" OFF)
+option(LMFIT_OPENMP "Use OpenMP")
 
 if(LMFIT_OPENMP)
 	find_package(OpenMP)
@@ -13,10 +13,25 @@ endif()
 
 set(TARGET lmfit2)
 
+add_library(${TARGET} STATIC ${SRC})
+target_include_directories(${TARGET} PUBLIC .)
+
 set(SRC
-	main.cpp
 	lmfit.h
 	lmfit.c
 )
 
-add_executable(${TARGET} ${SRC})
+
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+	
+	set(TARGET lmfit-demo)
+
+	set(SRC
+		main.cpp
+	)
+
+	add_executable(${TARGET} ${SRC})
+	target_link_libraries(${TARGET} lmfit2)
+
+endif()
+
