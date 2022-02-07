@@ -1,5 +1,5 @@
 /*
-Copywight: aslze (2019)
+Copyright: aslze (2019-2022)
 Copyright: Joachim Wuttke, Forschungszentrum Juelich GmbH (2004-2013)
 */
 
