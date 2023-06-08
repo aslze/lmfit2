@@ -429,6 +429,10 @@ void lmmin(const int n, double* x, const int m, const void* data,
 			/* ratio of actual to predicted reduction */
 			ratio = prered ? actred / prered : 0;
 
+			if (C->verbosity == 1)
+			{
+				printf("%21.15g  %g\n", fnorm1, lmpar);
+			}
 			if( C->verbosity == 2 ) {
 				fprintf( msgfile, "lmmin (%i:%i) ", outer, inner );
 				lm_print_pars( nout, wa2, msgfile ); // fnorm1,
