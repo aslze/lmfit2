@@ -1,4 +1,4 @@
-lmfit2 Copyright (c) 2019 aslze
+lmfit2 Copyright (c) 2019-2024 aslze
 
 Based on lmfit: BSD-licensed:
 
