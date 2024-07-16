@@ -243,12 +243,15 @@ void lmmin(const int n, double* x, const int m, const void* data,
 		}
 		/*  [outer]  Calculate the Jacobian.  */
 #ifdef LMFIT_OPENMP
-		#pragma omp parallel for
+#pragma omp parallel for
 #endif
 		for (j = 0; j < n; j++) {
 			(*evaluate)(par2 + n * j, m, data, wfs + m * j, &(S->userbreak));
+#ifdef LMFIT_OPENMP
+#pragma omp critical
+#endif
 			for (i = 0; i < m; i++)
-				fjac[j * m + i] = (wfs[m * j + i] - fvec[i]) / steps[j];
+				fjac[m * j + i] = (wfs[m * j + i] - fvec[i]) / steps[j];
 		}
 		S->nfev += n;
 		if (S->userbreak)
