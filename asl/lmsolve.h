@@ -27,7 +27,7 @@ Matrix_<T> solveZeroLM(F f, const Matrix_<T>& x0, const SolveParams& p = SolvePa
 	lm_control_struct control = lm_control_double;
 	lm_status_struct  status;
 	control.verbosity = p.maxiter < 0 ? 1 : 0;
-	control.patience = p.maxiter;
+	control.patience = abs(p.maxiter);
 	Matrixd   x = x0.clone();
 	LMData<F> data{ f, x.rows() };
 	lmmin(x0.rows(), &x(0, 0), f(x0).rows(), &data, evaluate, &control, &status);
