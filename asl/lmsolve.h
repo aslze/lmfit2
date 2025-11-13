@@ -1,9 +1,9 @@
-// Copyright(c) 2023-2024 aslze
+// Copyright(c) 2023-2025 aslze
 // Licensed under the MIT License (http://opensource.org/licenses/MIT)
 
 #pragma once
 #include <asl/Matrix.h>
-#include "lmfit.h"
+#include "../lmfit.h"
 
 namespace asl
 {
@@ -28,6 +28,8 @@ Matrix_<T> solveZeroLM(F f, const Matrix_<T>& x0, const SolveParams& p = SolvePa
 	lm_status_struct  status;
 	control.verbosity = p.maxiter < 0 ? 1 : 0;
 	control.patience = abs(p.maxiter);
+	if (p.delta > 0)
+		control.epsilon = p.delta;
 	Matrixd   x = x0.clone();
 	LMData<F> data{ f, x.rows() };
 	lmmin(x0.rows(), &x(0, 0), f(x0).rows(), &data, evaluate, &control, &status);
